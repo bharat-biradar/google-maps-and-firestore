@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "595722109200",
+    "firebase_url": "https://maps-dustbin.firebaseio.com",
+    "project_id": "maps-dustbin",
+    "storage_bucket": "maps-dustbin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595722109200:android:a07421117498e9624ee595",
+        "android_client_info": {
+          "package_name": "com.b.biradar.dustbin_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595722109200-ljfdqv641np6693fs9jgihfp11ghpnde.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG77iGJrEOt6ehSXait0we515lkGsguwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595722109200-ljfdqv641np6693fs9jgihfp11ghpnde.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
