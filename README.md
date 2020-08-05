@@ -1,4 +1,4 @@
-# dustbin_project
+# App demonstrating use of directions and google maps api with data received from firestore.
 
 A new Flutter application.
 
