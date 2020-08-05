@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
   }
 
   @override
@@ -42,14 +43,16 @@ class _MyAppState extends State<MyApp> {
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: GoogleMap(
+                myLocationEnabled: true,
+                myLocationButtonEnabled: true,
                 onMapCreated: onMapCreated,
                 initialCameraPosition: CameraPosition(
                     target: LatLng(26.47064, 73.11449), zoom: 17),
                 markers: allmarkers,
               )),
           Positioned(
-            top: MediaQuery.of(context).size.height / 28,
-            right: MediaQuery.of(context).size.width / 15,
+            bottom: MediaQuery.of(context).size.height / 7,
+            right: MediaQuery.of(context).size.width / 20,
             child: InkWell(
               onTap: () {
                 updatedata();
@@ -66,7 +69,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -82,7 +85,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   updatedata() async {
-    allmarkers = await database_service.getmarkers();
+    allmarkers = await database_service.updatemarkers();
 
     setState(() {
       allmarkers;
