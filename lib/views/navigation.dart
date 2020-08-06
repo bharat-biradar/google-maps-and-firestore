@@ -13,18 +13,23 @@ class Mapbox_nav extends StatefulWidget {
 class _Mapbox_navState extends State<Mapbox_nav> {
   String _platformVersion = 'Unknown';
   MapboxNavigation _directions;
-  final _origin =
-      WayPoint(name: "City Hall", latitude: 42.886448, longitude: -78.878372);
-  final _destination = WayPoint(
-      name: "Downtown Buffalo", latitude: 42.8866177, longitude: -78.8814924);
+  List<WayPoint> waypoints=<WayPoint>[];
   double _distanceRemaining, _durationRemaining;
   bool _arrived = false;
+  Database_Service database_service=Database_Service();
 
 
   @override
   void initState() {
     super.initState();
     initPlatformState();
+    getwaypoints();
+  }
+
+  getwaypoints() async{
+    print("called navigation waypoints");
+    waypoints=await database_service.getwaypoints();
+
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -169,8 +174,8 @@ class _Mapbox_navState extends State<Mapbox_nav> {
             child: Text("Start Navigation"),
             onPressed: () async {
               await _directions.startNavigation(
-                  origin: _origin,
-                  destination: _destination,
+                  origin: waypoints[0],
+                  destination: waypoints[1],
                   mode: MapBoxNavigationMode.drivingWithTraffic,
                   simulateRoute: true,
                   language: "German",

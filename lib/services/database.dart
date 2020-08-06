@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_mapbox_navigation/library.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Database_Service {
@@ -32,7 +33,6 @@ class Database_Service {
   }
 
   Future<Set<Marker>> getmarkers() async {
-
     await loadicons();
     Set<Marker> markers = HashSet();
     await databaserefernce
@@ -49,13 +49,16 @@ class Database_Service {
                     position: LatLng(doc.data["location"].latitude,
                         doc.data["location"].longitude)));
               }),
-      binc=snapshot.documents.length,
+              binc = snapshot.documents.length,
             });
     return markers;
   }
 
   Future<Set<Marker>> updatemarkers() async {
     Set<Marker> markers = HashSet();
+    ebinc = 0;
+    flbinc = 0;
+    fbinc = 0;
     await databaserefernce
         .collection("markers")
         .getDocuments()
@@ -93,6 +96,33 @@ class Database_Service {
       return full;
     }
   }
+
+  getwaypoints() async {
+    print("in database service waypoints");
+    List<WayPoint> waypoint = [];
+    await databaserefernce
+        .collection("markers")
+        .where("name", isEqualTo: "sardarpura")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      waypoint.add(WayPoint(
+          name: snapshot.documents[0].data["name"],
+          latitude: snapshot.documents[0].data["location"].latitude,
+          longitude: snapshot.documents[0].data["location"].longitude));
+
+    });
+    await databaserefernce
+        .collection("markers")
+        .where("name", isEqualTo: "Ratanada")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      waypoint.add(WayPoint(
+          name: snapshot.documents[0].data["name"],
+          latitude: snapshot.documents[0].data["location"].latitude,
+          longitude: snapshot.documents[0].data["location"].longitude));
+
+    });
+
+    return waypoint;
+  }
 }
-
-
